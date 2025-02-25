@@ -1,0 +1,538 @@
+/* importamos la fuente de google */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500&display=swap');
+
+/* varibles css */
+
+:root{
+
+    --header-height:3.5rem;
+    /* Colores */
+
+    --white-color:hsl(0, 0%,100%);
+    --black-color:hsl(0,0%,10%);
+    /* Degradado Suave (Más Relajante) */
+    --gradient-bg: linear-gradient(90deg, #A67C82 0%, #D8A48F 100%); /* Tonos tierra pastel */
+
+    /* tamaño y tipo de topografia */
+
+    --body-font:"Montserrat Alternates", serif;
+    --h1-font-size:1.5rem;
+    --normal-font-size:.938rem;
+
+
+    /* peso de la fuente o grosor */
+    --font-regular:400;
+    --font-mediun:500;
+
+    /* z-index */
+    --z-tooltip:10;
+    --z-fixed:100;
+
+    /* Color de Fondo Suave */ 
+    --background-color: #FAF3E0; /* Beige claro relajante */
+
+    /* Colores de Detalles */
+    --primary-color: #D85A48; /* Coral cálido */
+    --secondary-color: #8D928B; /* Gris-verde neutro */
+    --accent-color: #D84E95; /* Rosa elegante */
+
+
+/* colores para el tema oscuro */
+    --background-color-dark: hsl(210, 10%, 10%);
+    --text-color-dark: hsl(0, 0%, 90%);
+    --gradient-bg-dark: linear-gradient(90deg, #5A1F36 0%, #A04038 100%);
+    --card-bg-dark: hsl(210, 10%, 20%);
+    --border-color-dark: #E07A9B;
+    --highlight-color-dark: #F28CA2;
+}
+
+/* ahora cuadramos el diseño responsivo de la tipografia */
+/* determinamos el tamaño en 1500 */
+@media screen and (min-width :1150px){
+    :root{
+        --normal-font-size:1rem;
+    }
+}
+
+/* Base inicial de la Pagina Principal */
+
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--background-color);
+}
+/* estilo ul */
+
+ul{
+    list-style: none;   
+}
+
+a{
+
+
+    text-decoration: none;
+}
+
+/* clases de css reutilizables */
+
+.container{
+    max-width: 1120px;
+    margin-inline: 1.5rem;
+}
+
+/* HEADER Y NAV */
+.header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left:0 ;
+    background: var(--gradient-bg);
+    z-index: 100; /* Se mantiene sobre el h1 */
+}
+
+.nav{
+    position: relative;
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__logo{
+    color: var(--white-color);
+    font-weight: var(--font-mediun);
+}
+
+.nav__close,
+.nav__toggle{
+    display: flex;
+    color: var(--white-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+/* navegacion por  dispositivos moviles */
+@media screen and (max-width:1150px) {
+    .nav__menu{
+        position: fixed;
+        left: -100%;
+        top: 0;
+        background: var(--gradient-bg);
+        width: 100%;
+        height: 100%;
+        padding: 6rem 3.5rem 4.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition:left .4s;
+    }
+    .nav__item{
+        transform: translateX(-150px);
+        visibility: hidden;
+        transition: transform .4s ease-out,visibility .4s;
+    }
+
+    .nav__item:nth-child(1){
+        transition-delay: .1s;
+    }
+    .nav__item:nth-child(2){
+        transition-delay: .2s;
+    }
+    .nav__item:nth-child(3){
+        transition-delay: .3s;
+    }
+    .nav__item:nth-child(4){
+        transition-delay: .4s;
+    }
+    .nav__item:nth-child(5){
+        transition-delay: .5s;
+    }
+    .nav__item:nth-child(6){
+        transition-delay: .6s;
+    }
+}
+
+.nav__list,
+.nav__social{
+    display: flex;
+}
+
+.nav__list{
+    flex-direction: column;
+    row-gap: 3rem;
+}
+
+.nav__link{
+    position: relative;
+    color: var(--white-color);
+    font-size: var(--h1-font-size);
+    font-weight: var(--font-mediun);
+    display: inline-flex;
+    align-items: center;
+    transition: opacity .4s;
+}
+
+.nav__link i{
+    font-size: 2rem;
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .4s visibility .4s;
+}
+
+.nav__link span{
+    position: relative;
+    transition: margin .4s;
+}
+
+.nav__link span::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background-color: var(--white-color);
+}
+
+/* animacion del menu de navagacion enlaces */
+
+.nav__link:hover span{
+    margin-left: 2.5rem;
+}
+
+.nav__link:hover i{
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav__link:hover span::after{
+    width: 100%;
+}
+.nav__list:has(.nav__link:hover).nav__link:not(:hover){
+    opacity: .4s;
+}
+
+.nav__close{
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+.nav__social{
+    column-gap: 1rem;
+}
+
+.nav__social-link{
+    color: var(--white-color);
+    font-size: 1.5rem;
+    transition: transform .4s;
+}
+.nav__social-link:hover{
+    transform:translateY(-.25rem) ;
+}
+
+.show-menu{
+    left: 0;
+}
+
+/* menu de despliegue animacion */
+
+.show-menu .nav__item{
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* para pantallas grande menu */
+
+@media screen and (min-width:1150px) {
+    .container{
+        margin-inline: auto;
+    }
+    .nav{
+        height: calc(var(--header-height) + 2rem);
+    }
+    .nav__toggle,
+    .nav__close{
+        display: none;
+    }
+
+    .nav__link{
+        font-size: var(--normal-font-size);
+    }
+    .nav__link i{
+        font-size: 1.5rem;
+    }
+
+    .nav__list{
+        flex-direction: row;
+        column-gap: 3.5rem;
+    }
+    .nav__menu{
+        display: flex;
+        align-items: center;
+        column-gap: 3.5rem;
+    }
+}
+
+/* Seccion Principal */
+
+.main {
+    /* border: 1px solid red; */
+    padding-top: 100px; /* Ajusta según la altura del header */
+}
+
+.service-wrapper{
+    padding: 5% 8%;
+}
+
+.service{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    color: #fff; /* Color base del texto */
+    font-size: 5rem; /* Tamaño del texto */
+    
+    /* Contorno del texto */
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: transparent;
+    
+    /* Espaciado entre letras */
+    letter-spacing: 4px;
+    
+    /* Fondo en caso de que el navegador no soporte la propiedad de texto con gradiente */
+    background-color: rgb(183, 39, 58); /* #b7273a en formato RGB */
+    
+    /* Gradiente de color para el texto */
+    background: linear-gradient(180deg, 
+        rgba(183, 39, 58, 1) 0%,   /* Color rojo oscuro */
+        rgba(255, 94, 98, 1) 50%,  /* Rojo más claro */
+        rgba(255, 175, 123, 1) 100% /* Naranja pastel */
+    );
+
+    /* Aplicar el fondo al texto */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Posición relativa para futuros efectos */
+    position: relative;
+}
+
+h1:after{
+    content:"";
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    height: 8px;
+    width: 80%;
+    border-radius: 8px;
+    background: rgba(173, 216, 230, 0.5); /* Azul pastel */
+
+}
+h1 span {
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: #D8574E; /* Rojo coral suave */
+    animation: anim 5s linear infinite;
+}
+
+
+@keyframes anim{
+    95%{
+        opacity: 1;
+    }
+
+    100%{
+        opacity: 0;
+        left: 80%;
+    }
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 30px;
+    margin-top: 80px;
+}
+
+.card{
+    height: 350px;
+    width: 370px;
+    background-color: rgb(241, 232, 227);
+    padding: 3% 8%;
+    border: 0.2px solid rgba(231, 118, 223, 0.4);
+    border-radius: 8px;
+    transition: .6s;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+.card:after{
+    content: "";
+    position: absolute;
+    top: 150%;
+    left: -200px;
+    width: 120%;
+    transform: rotate(50deg);
+    background-color: #8d928b;
+    height: 18px;
+    filter: blur(30px);
+    opacity: 0.5;
+    transition: 1s;
+}
+.card:hover:after{
+    width: 225%;
+    top: -100%;
+}
+
+.card i{
+    /* color: rgb(19, 169, 180); */
+    color: var(--primary-color);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 4.8rem ;
+}
+.card h2{
+    color: #d84e95;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.card p{
+    text-align: center;
+    width: 100%;
+    margin: 12px 0;
+    color: #6f6f6f;
+}
+.card:hover{
+    background-color: transparent;
+    transform: translateY(-8px);
+    border-color: #d84e95;
+}
+.card:hover i{
+    color: var(--secondary-color);
+}
+
+
+@media screen and (max-width:1150px) {
+    .cards{
+        grid-template-columns: repeat(1,1fr);
+    }
+    h1{
+        font-size: 3.5rem;
+        text-align: center;
+    }
+}
+@media screen and (min-width: 820px) and (max-width: 1180px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+    .cards {
+        grid-template-columns: 1fr; /* Solo una columna para que no queden pegadas */
+        gap: 20px; /* Ajusta el espacio entre las tarjetas */
+    }
+
+    .card {
+        width: 90%; /* Reduce el ancho para que no toque los bordes */
+        margin: 0 auto; /* Centra las tarjetas */
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 819px) {
+    .card {
+        width: 85%; /* Aumenta el ancho de las tarjetas */
+        height: 400px; /* Un poco más altas */
+        font-size: 1.1rem; /* Ajusta el tamaño del texto */
+        padding: 5% 7%; /* Ajusta los espacios internos */
+        margin: 0 auto; /* Centra las tarjetas */
+    }
+}
+
+
+
+/* Modo oscuro */
+.dark-mode {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+}
+
+/* Botón de cambio de tema */
+.dark-theme-btn {
+    position: fixed;
+    z-index: 10;
+    bottom: 1vh;
+    left: 1vw;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: var(--black-color);
+    color: var(--border-color-dark);
+    cursor: pointer;
+    outline: 0;
+    border: 0;
+    transition: all 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Cambio al pasar el mouse */
+.dark-theme-btn:hover {
+    background-color: var(--white-color);
+    color: var(--secondary-color);
+}
+
+/* Asegurar que el icono cambie correctamente */
+.dark-theme-btn i {
+    transition: color 0.3s ease-out;
+}
+
+/* Cambios en modo oscuro */
+.dark-mode .dark-theme-btn {
+    background-color: var(--white-color);
+    color: var(--secondary-color);
+}
+
+.dark-mode .dark-theme-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--black-color);
+}
+
+/* Cambio de color del ícono en modo oscuro */
+.dark-mode .dark-theme-btn i {
+    color: var(--border-color-dark);
+}
+
+
+/* --background-color-dark: hsl(210, 10%, 10%);
+    --text-color-dark: hsl(0, 0%, 90%);
+    --gradient-bg-dark: linear-gradient(90deg, #5A1F36 0%, #A04038 100%);
+    --card-bg-dark: hsl(210, 10%, 20%);
+    --border-color-dark: #E07A9B;
+    --highlight-color-dark: #F28CA2; */
