@@ -1,0 +1,158 @@
+.section-1 {
+    padding: 100px 50px 50px 50px;
+    display: flex;
+    align-items: center; /* Alinea verticalmente */
+    gap: 30px; /* Espacio entre las dos secciones */
+    overflow: visible;
+    /* padding: 50px; */
+}
+
+.container-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Dar más espacio a las imágenes */
+.info {
+    flex: 0.4; /* Ocupa el 40% del ancho */
+    max-width: 40%;
+}
+.info h2{
+    font-size: 5rem;
+    color: #F28CA2;
+}
+.info p{
+    color: #A7C7E7;
+}
+
+.equipo {
+    flex: 0.6; /* Ocupa el 60% del ancho */
+    margin-top: 70px; /* Ajusta este valor según necesites */
+}
+
+
+/* Filas de imágenes */
+.row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Crea 3 columnas por fila */
+    gap: 20px; /* Espacio entre las imágenes */
+    justify-content: center;
+}
+
+/* Cada columna */
+.col {
+    text-align: center;
+}
+
+.col img {
+    width: 100px; /* Ajusta el tamaño de las imágenes */
+    height: 100px;
+    border-radius: 50%; /* Hace las imágenes circulares */
+}
+
+.nombre {
+    display: inline-flex;
+    width:100px; /* Ajusta según necesites */
+    text-align: center;
+    font-weight: bold;
+    word-wrap: break-word; /* Permite que el texto se divida si es muy largo */
+    text-wrap: balance; /* Hace que la distribución del texto sea uniforme */
+}
+@media screen and (max-width: 1150px) {  
+    .section-1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 90px 5px 5px 5px;
+        overflow-x: hidden;
+    }
+
+    /* Contenedor del texto */
+    .container-section:first-child {
+        width: 100%;
+        text-align: center;
+    }
+
+    .container-section.info {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        padding: 20px;
+    }
+    
+    /* Contenedor de imágenes */
+    .row {
+        display: grid;
+        grid-template-columns: 1fr; /* Solo 1 columna en móviles */
+        justify-content: center;
+        align-items: center;
+        gap: 15px; /* Espacio entre los elementos */
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 280px; /* Tamaño controlado */
+        text-align: center;
+        padding: 15px;
+    }
+
+    .col img {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+    }
+}
+
+/* Ajustes para tablets */
+@media screen and (min-width: 820px) and (max-width: 1180px) {
+    .row {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+        gap: 20px;
+    }
+    .col {
+        max-width: 260px;
+    }
+}
+
+/* Ajustes para móviles pequeños */
+@media screen and (max-width: 600px) {
+    .row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .col {
+        width: 90%;
+        max-width: 270px;
+        margin: 0 auto;
+    }
+}
+
+/* Ajustes para pantallas medianas */
+@media screen and (min-width: 600px) and (max-width: 819px) {
+    .row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .col {
+        width: 100%;
+        max-width: 250px;
+        font-size: 1.1rem;
+        padding: 5% 7%;
+        margin: 0 auto;
+    }
+}
+
+

@@ -98,7 +98,7 @@ a{
     top: 0;
     left:0 ;
     background: var(--gradient-bg);
-    z-index: 100; /* Se mantiene sobre el h1 */
+    z-index: 9999; /* Se mantiene sobre el h1 */
 }
 
 .nav{
@@ -471,8 +471,6 @@ h1 span {
         margin: 0 auto; /* Centra las tarjetas */
     }
 }
-
-
 
 /* Modo oscuro */
 .dark-mode {
